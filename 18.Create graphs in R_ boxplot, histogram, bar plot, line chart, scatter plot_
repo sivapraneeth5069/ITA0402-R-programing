@@ -1,0 +1,19 @@
+
+set.seed(123)
+x <- rnorm(50, mean=10, sd=5)   # random numbers
+y <- rnorm(50, mean=20, sd=10)  # another vector
+categories <- sample(c("A","B","C"), 50, replace=TRUE)
+
+boxplot(x, main="Boxplot of X", col="lightblue")
+
+
+hist(x, main="Histogram of X", xlab="Values of X", col="lightgreen", breaks=10)
+
+barplot(table(categories), main="Bar Plot of Categories", col="orange")
+
+
+plot(x, type="l", main="Line Chart of X", col="blue", lwd=2, xlab="Index", ylab="Value")
+
+
+plot(x, y, main="Scatter Plot of X vs Y", xlab="X", ylab="Y",
+     col="red", pch=19)
