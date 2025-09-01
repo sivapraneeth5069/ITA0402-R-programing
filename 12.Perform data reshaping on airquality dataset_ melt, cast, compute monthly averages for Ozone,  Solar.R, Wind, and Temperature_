@@ -1,0 +1,25 @@
+
+library(reshape2)
+
+data("airquality")
+cat("Original airquality dataset:\n")
+print(head(airquality, 6))   # show first 6 rows
+
+
+melted <- melt(airquality,
+               id.vars = c("Month", "Day"),
+               measure.vars = c("Ozone", "Solar.R", "Wind", "Temp"),
+               variable.name = "Variable",
+               value.name = "Value")
+
+cat("\nMelted dataset (long format):\n")
+print(head(melted, 10))
+
+
+monthly_avg <- dcast(melted,
+                     Month ~ Variable,
+                     fun.aggregate = mean,
+                     na.rm = TRUE)
+
+cat("\nMonthly averages of Ozone, Solar.R, Wind, and Temp:\n")
+print(monthly_avg)
