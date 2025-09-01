@@ -1,0 +1,32 @@
+
+library(dplyr)
+library(tidyr)
+
+
+data("ChickWeight")
+
+cat("First 10 rows of ChickWeight dataset:\n")
+print(head(ChickWeight, 10))
+
+
+sorted_weight <- ChickWeight %>% arrange(desc(weight))
+cat("\nSorted by weight (top 10):\n")
+print(head(sorted_weight, 10))
+
+sorted_diet_time <- ChickWeight %>% arrange(Diet, Time)
+cat("\nSorted by Diet, then Time (first 10):\n")
+print(head(sorted_diet_time, 10))
+
+wide_data <- ChickWeight %>%
+  pivot_wider(names_from = Time, values_from = weight)
+
+cat("\nWide format (weights across Time):\n")
+print(head(wide_data, 5))
+
+diet_avg <- ChickWeight %>%
+  group_by(Diet, Time) %>%
+  summarise(avg_weight = mean(weight, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = Diet, values_from = avg_weight)
+
+cat("\nAverage weights by Time across Diets:\n")
+print(head(diet_avg, 10))
