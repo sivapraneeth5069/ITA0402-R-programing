@@ -1,0 +1,43 @@
+
+exam_data <- data.frame(
+  name     = c("Anastasia", "Dinesh", "Kavya", "Vivek", "Priya", "Rahul"),
+  score    = c(12, 9, 16, 18, 20, 14),
+  attempts = c(1, 3, 2, 3, 2, 1),
+  qualify  = c("yes", "no", "yes", "no", "yes", "yes"),
+  stringsAsFactors = FALSE
+)
+
+cat("Original Data Frame:\n")
+print(exam_data)
+
+
+
+cat("\nExtract 1st and 3rd row:\n")
+print(exam_data[c(1,3), ])
+
+cat("\nExtract 'name' and 'score' columns:\n")
+print(exam_data[c("name", "score")])
+
+
+
+new_row <- data.frame(name="Arjun", score=15, attempts=2, qualify="no")
+exam_data <- rbind(exam_data, new_row)
+
+cat("\nAfter adding new row:\n")
+print(exam_data)
+
+
+
+exam_data$remarks <- c("Good", "Average", "Very Good", "Excellent", "Excellent", "Good", "Average")
+
+cat("\nAfter adding new column:\n")
+print(exam_data)
+
+
+exam_sorted <- exam_data[order(exam_data$score, decreasing = TRUE), ]
+cat("\nData Frame sorted by score (descending):\n")
+print(exam_sorted)
+
+
+write.csv(exam_data, "exam_data.csv", row.names = FALSE)
+cat("\nData Frame saved to 'exam_data.csv'\n")
