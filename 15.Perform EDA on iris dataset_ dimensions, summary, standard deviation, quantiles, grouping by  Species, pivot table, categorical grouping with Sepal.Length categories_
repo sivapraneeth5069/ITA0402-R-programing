@@ -1,0 +1,27 @@
+
+library(dplyr); library(tidyr)
+
+data("iris")
+
+
+dim(iris); summary(iris); str(iris)
+
+
+sapply(iris[1:4], sd)
+quantile(iris$Sepal.Length); quantile(iris$Petal.Length)
+
+
+iris %>% group_by(Species) %>%
+  summarise(across(1:4, mean), .groups="drop")
+
+
+iris %>% group_by(Species) %>%
+  summarise(mean_sepal = mean(Sepal.Length), mean_petal = mean(Petal.Length)) %>%
+  pivot_wider(names_from = Species, values_from = c(mean_sepal, mean_petal))
+
+iris %>% mutate(SepalCat = case_when(
+  Sepal.Length < 5 ~ "Short",
+  Sepal.Length < 6.5 ~ "Medium",
+  TRUE ~ "Long"
+)) -> iris_cat
+table(iris_cat$SepalCat, iris_cat$Species)
