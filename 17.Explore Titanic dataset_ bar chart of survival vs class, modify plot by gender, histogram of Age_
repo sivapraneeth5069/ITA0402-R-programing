@@ -1,0 +1,19 @@
+
+data("Titanic")
+titanic_df <- as.data.frame(Titanic)
+
+
+library(ggplot2)
+
+ggplot(titanic_df, aes(x = Class, y = Freq, fill = Survived)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Survival vs Class", y = "Number of Passengers")
+
+
+ggplot(titanic_df, aes(x = Class, y = Freq, fill = Survived)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~Sex) +
+  labs(title = "Survival vs Class (by Gender)", y = "Number of Passengers")
+
+cat("⚠️ Note: The base Titanic dataset does not include Age.\n")
+cat("👉 Use 'titanic_train' from the 'titanic' package for Age-related plots.\n")
