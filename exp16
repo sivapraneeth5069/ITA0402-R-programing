@@ -1,0 +1,46 @@
+
+data("USArrests")
+df <- USArrests
+
+
+cat("Summary statistics:\n")
+print(summary(df))
+
+
+rape_max_state <- rownames(df)[which.max(df$Rape)]
+cat("\nState with highest rape arrests:", rape_max_state, "\n")
+
+
+cat("\nMax Murder rate:", max(df$Murder), "in", rownames(df)[which.max(df$Murder)])
+cat("\nMin Murder rate:", min(df$Murder), "in", rownames(df)[which.min(df$Murder)], "\n")
+
+cat("\nCorrelation matrix:\n")
+print(cor(df))
+
+
+assault_above <- rownames(df[df$Assault > median(df$Assault), ])
+cat("\nStates with Assault arrests above median:\n")
+print(assault_above)
+
+
+murder_cutoff <- quantile(df$Murder, 0.25)
+murder_low <- rownames(df[df$Murder <= murder_cutoff, ])
+cat("\nStates in bottom 25% for Murder rates:\n")
+print(murder_low)
+
+
+par(mfrow=c(2,2)) # 2x2 layout
+
+
+hist(df$Murder, main="Histogram of Murder", col="skyblue", xlab="Murder rate")
+
+
+plot(density(df$Assault), main="Density of Assault", col="red", lwd=2)
+
+
+plot(df$Murder, df$Assault, main="Murder vs Assault", xlab="Murder", ylab="Assault", pch=19, col="darkgreen")
+
+
+barplot(df$UrbanPop[1:10], names.arg=rownames(df)[1:10], las=2,
+        main="UrbanPop (first 10 states)", col="orange")
+
