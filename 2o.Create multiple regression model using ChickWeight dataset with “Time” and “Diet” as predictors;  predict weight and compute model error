@@ -1,0 +1,21 @@
+
+data("ChickWeight")
+
+model <- lm(weight ~ Time + Diet, data=ChickWeight)
+
+summary(model)
+
+
+predicted <- predict(model, newdata=ChickWeight)
+
+residuals <- ChickWeight$weight - predicted
+rmse <- sqrt(mean(residuals^2))
+
+cat("Root Mean Squared Error (RMSE):", rmse, "\n")
+
+
+head(data.frame(
+  Actual = ChickWeight$weight,
+  Predicted = predicted,
+  Residual = residuals
+), 10)
