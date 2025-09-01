@@ -1,0 +1,33 @@
+
+data(women)  # built-in dataset: height & weight
+
+
+height_factor <- cut(
+  women$height,
+  breaks = c(55, 62, 68, 75),   # intervals
+  labels = c("Short", "Medium", "Tall"),
+  right = TRUE
+)
+
+cat("Factor variable (Height categories):\n")
+print(height_factor)
+cat("Levels:", levels(height_factor), "\n\n")
+
+
+set.seed(123)   # reproducibility
+letters_sample <- sample(LETTERS[1:6], 20, replace = TRUE)
+
+letters_factor <- factor(letters_sample)
+
+cat("Factor variable from random LETTERS:\n")
+print(letters_factor)
+cat("Levels:", levels(letters_factor), "\n\n")
+
+
+cat("Frequency table of LETTERS factor:\n")
+print(table(letters_factor))
+
+
+letters_factor <- factor(letters_factor, levels = c("F","E","D","C","B","A"))
+cat("\nReordered factor levels:\n")
+print(levels(letters_factor))
