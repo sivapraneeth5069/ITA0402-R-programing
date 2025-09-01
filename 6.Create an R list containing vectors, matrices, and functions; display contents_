@@ -1,0 +1,23 @@
+num_vec <- c(10, 20, 30, 40)
+
+mat <- matrix(1:4, nrow = 2, ncol = 2)
+
+my_fun <- function(x) {
+  return(x^2 + 2*x + 1)
+}
+
+my_list <- list(
+  Numbers = num_vec,
+  Matrix  = mat,
+  Function = my_fun
+)
+
+
+print("Complete List:")
+print(my_list)
+
+
+cat("\nAccessing specific elements:\n")
+print(my_list$Numbers)        
+print(my_list$Matrix)        
+print(my_list$Function(5))    
