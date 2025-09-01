@@ -1,0 +1,8 @@
+
+data <- read.csv("exam_data.csv", header = TRUE, stringsAsFactors = FALSE)
+
+cat("First 6 rows of the CSV file:\n")
+print(head(data))
+
+cat("\nComplete CSV file contents:\n")
+print(data)
